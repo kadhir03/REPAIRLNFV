@@ -63,7 +63,7 @@ if ($formulario == "crear_personal") {
             <script type="text/javascript">
                 alert("Usuario creado exitosamente!!!");
             </script>
-<?php
+        <?php
         }
     }
 }
@@ -98,11 +98,23 @@ if ($formulario == "consultar_personal" && $formulario != "") {
     $sql = "SELECT * FROM `clientes` WHERE 1=1 $comodin";
     $consulta = $dbm->prepare($sql);
     $consulta->execute();
-
-    
 }
 
+$accion = variable_exterior("accion");
+$id_accion = variable_exterior("id_accion");
 
+if ($accion != "" && $id_accion >= 1) {
+    $sql = "UPDATE clientes SET estado = '" . $accion . "' WHERE id = '" . $id_accion . "' ";
+    $update = $dbm->prepare($sql);
+    if ($update->execute()) {
+        ?>
+        <script type="text/javascript">
+            alert("Personal Actualizado Correctamente")
+            location.href = '?url_id=gestion_personal';
+        </script>
+<?php
+    }
+}
 
 
 

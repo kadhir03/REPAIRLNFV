@@ -88,21 +88,46 @@
                             </tr>
                         </thead>
                         <tbody class="fw-bold text-gray-600">
-                            <?
+                            <?php
                             if ($consulta != "") {
                                 while ($fila = $consulta->fetch()) {
                             ?>
                                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                        <td class="min-w-185px"><a href=""></a></td>
-                                        <td class="min-w-185px"><?= $fila['usuario']  ?></td>
+                                        <td class="min-w-185px"></td>
+                                        <td class="min-w-185px"><a href="?url_id=usuario&id=<?= $fila['id']  ?>" target="_blank" class="btn btn-primary"><?= $fila['usuario']  ?></a></td>
                                         <td class="min-w-185px"><?= $fila['contraseña']  ?></td>
                                         <td class="min-w-125px"><?= $fila['nombre']  ?></td>
                                         <td class="min-w-185px"><?= $fila['correo']  ?></td>
                                         <td class="min-w-125px"><?= $fila['telefono']  ?></td>
                                         <td class="min-w-125px"><?= $fila['direccion']  ?></td>
-                                        <td class="min-w-125px"><?= $fila['estado']  ?></td>
+                                        <td class="min-w-125px">
+                                            <?php
+                                            if ($_SESSION['administrador'] == 1) {
+                                                # code...
+                                                if ($fila['estado'] == "activo") {
+                                            ?>
+                                                    <a href="?url_id=gestion_personal&accion=inactivo&id_accion=<?php echo $fila['id'] ?>">
+                                                        <button type="button" class="btn btn-light-success me-3" data-bs-toggle="modal" data-bs-target="#kt_customers_export_modal">
+                                                            ACTIVO
+                                                        </button>
+                                                    </a>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <a href="?url_id=gestion_personal&accion=activo&id_accion=<?php echo $fila['id'] ?>">
+                                                        <button type="button" class="btn btn-light-danger me-3" data-bs-toggle="modal" data-bs-target="#kt_customers_export_modal">
+                                                            INACTIVO
+                                                        </button>
+                                                    </a>
+                                            <?php
+                                                }
+                                            }else {
+                                                echo $fila['estado'];
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
-                            <?
+                            <?php
                                 }
                             }
 
