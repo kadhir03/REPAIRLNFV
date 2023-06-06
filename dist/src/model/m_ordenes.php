@@ -26,7 +26,7 @@ if($formulario === ''){
 }
 
 
-if ($formulario == "crear_personal") {
+if ($formulario == "crear_orden") {
     $usuario = variable_exterior("usuario");
     $contraseña = variable_exterior("contraseña");
     $numero_identificacion = variable_exterior("numero_identificacion");
@@ -81,7 +81,7 @@ if ($formulario == "crear_personal") {
     }
 }
 
-if ($formulario == "consultar_personal" && $formulario != "") {
+if ($formulario == "consultar_orden" && $formulario != "") {
 
     $numero_identificacion = variable_exterior("numero_identificacion");
     $usuario = variable_exterior("usuario");
@@ -128,7 +128,5 @@ if ($accion != "" && $id_accion >= 1) {
 <?php
     }
 }
-
-
 
 ?>

@@ -31,22 +31,22 @@
                             <!--end::Separator-->
                             <!--begin::Content-->
 
-                            
-                            <form class="form" action="?url_id=gestion_personal" method="POST" id="consultar_personal" name="consultar_personal" enctype="multipart/form-data">
-                                <input type="hidden" name="formulario" id="formulario" value="consultar_personal">
+
+                            <form class="form" action="?url_id=productos" method="POST" id="consultar_producto" name="consultar_producto" enctype="multipart/form-data">
+                                <input type="hidden" name="formulario" id="formulario" value="consultar_producto">
                                 <div class="scroll-y mh-300px mh-lg-325px">
                                     <div class="px-7 py-5">
                                         <div class="mb-10">
-                                            <label class="form-label fs-5 fw-bold mb-3">Identificación:</label>
-                                            <input id="numero_identificacion" name="numero_identificacion" type="text" class="form-control form-control-solid" />
+                                            <label class="form-label fs-5 fw-bold mb-3">Marca:</label>
+                                            <input id="marca" name="marca" type="text" class="form-control form-control-solid" />
                                         </div>
                                         <div class="mb-10">
-                                            <label class="form-label fs-5 fw-bold mb-3">Usuario:</label>
-                                            <input id="usuario" name="usuario" type="text" class="form-control form-control-solid" />
+                                            <label class="form-label fs-5 fw-bold mb-3">Modelo:</label>
+                                            <input id="modelo" name="modelo" type="text" class="form-control form-control-solid" />
                                         </div>
                                         <div class="mb-10">
-                                            <label class="form-label fs-5 fw-bold mb-3">Nombre:</label>
-                                            <input id="nombre" name="nombre" type="text" class="form-control form-control-solid" />
+                                            <label class="form-label fs-5 fw-bold mb-3">Referencia:</label>
+                                            <input id="referencia" name="referencia" type="text" class="form-control form-control-solid" />
                                         </div>
                                         <div class="d-flex justify-content-end">
                                             <input type="submit" name="enviar" class="btn btn-primary" value="Filtrar">
@@ -61,7 +61,7 @@
                         ?>
                             <!--begin::Action-->
                             <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_api_key">
-                                Crear Usuarios
+                                Crear Producto
                             </a>
                             <!--end::Action-->
                         <?php
@@ -80,12 +80,9 @@
                         <thead>
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="min-w-185px"></th>
-                                <th class="min-w-185px">Usuario</th>
-                                <th class="min-w-185px">Contraseña</th>
-                                <th class="min-w-125px">Nombre Completo</th>
-                                <th class="min-w-185px">Correo</th>
-                                <th class="min-w-125px">Telefono</th>
-                                <th class="min-w-125px">Dirección</th>
+                                <th class="min-w-185px">Marca</th>
+                                <th class="min-w-185px">Modelo</th>
+                                <th class="min-w-185px">Referencia</th>
                                 <th class="min-w-125px">Estado</th>
                             </tr>
                         </thead>
@@ -96,34 +93,31 @@
                             ?>
                                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                         <td class="min-w-185px"></td>
-                                        <td class="min-w-185px"><a href="?url_id=usuario&id=<?= $fila['id']  ?>" target="_blank" class="btn btn-primary"><?= $fila['usuario']  ?></a></td>
-                                        <td class="min-w-185px"><?= $fila['contraseña']  ?></td>
-                                        <td class="min-w-125px"><?= $fila['nombre']  ?></td>
-                                        <td class="min-w-185px"><?= $fila['correo']  ?></td>
-                                        <td class="min-w-125px"><?= $fila['telefono']  ?></td>
-                                        <td class="min-w-125px"><?= $fila['direccion']  ?></td>
+                                        <td class="min-w-185px"><a href="?url_id=gestion_productos&id=<?= $fila['id']  ?>" target="_blank" class="btn btn-primary"><?= $fila['marca']  ?></a></td>
+                                        <td class="min-w-125px"><?= $fila['modelo']  ?></td>
+                                        <td class="min-w-185px"><?= $fila['referencia']  ?></td>
                                         <td class="min-w-125px">
                                             <?php
                                             if ($_SESSION['administrador'] == 1) {
                                                 # code...
                                                 if ($fila['estado'] == "activo") {
                                             ?>
-                                                    <a href="?url_id=gestion_personal&accion=inactivo&id_accion=<?php echo $fila['id'] ?>">
-                                                        <button type="button" class="btn btn-light-success me-3" data-bs-toggle="modal" data-bs-target="#kt_customers_export_modal">
+                                                    <a href="?url_id=productos&accion=inactivo&id_accion=<?php echo $fila['id'] ?>">
+                                                        <button type="button" class="btn btn-light-success me-3">
                                                             ACTIVO
                                                         </button>
                                                     </a>
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <a href="?url_id=gestion_personal&accion=activo&id_accion=<?php echo $fila['id'] ?>">
-                                                        <button type="button" class="btn btn-light-danger me-3" data-bs-toggle="modal" data-bs-target="#kt_customers_export_modal">
+                                                    <a href="?url_id=productos&accion=activo&id_accion=<?php echo $fila['id'] ?>">
+                                                        <button type="button" class="btn btn-light-danger me-3">
                                                             INACTIVO
                                                         </button>
                                                     </a>
                                             <?php
                                                 }
-                                            }else {
+                                            } else {
                                                 echo $fila['estado'];
                                             }
                                             ?>
@@ -146,7 +140,7 @@
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content">
             <div class="modal-header" id="kt_modal_create_api_key_header">
-                <h2>Crear Personal</h2>
+                <h2>Crear Producto</h2>
                 <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
                     <span class="svg-icon svg-icon-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -156,8 +150,8 @@
                     </span>
                 </div>
             </div>
-            <form id="crear_personal" name="crear_personal" class="form" action="?url_id=gestion_personal" method="POST" onsubmit="return validacion_crear_personal()" enctype="multipart/form-data">
-                <input type="hidden" name="formulario" id="formulario" value="crear_personal">
+            <form id="crear_producto" name="crear_producto" class="form" action="?url_id=productos" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="formulario" id="formulario" value="crear_producto">
                 <div class="modal-body py-10 px-lg-17">
                     <div class="scroll-y me-n7 pe-7" id="kt_modal_create_api_key_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_create_api_key_header" data-kt-scroll-wrappers="#kt_modal_create_api_key_scroll" data-kt-scroll-offset="300px">
                         <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-10 p-6">
@@ -178,45 +172,24 @@
                         <div class="d-flex flex-column mb-10 fv-row">
                             <div class="row">
                                 <div class="col-6 mb-10">
-                                    <label class="required fs-5 fw-bold mb-2">Número Identificación:</label>
-                                    <input required name="numero_identificacion" type="number" class="form-control form-control-solid" id="numero_identificacion" />
+                                    <label class="required fs-5 fw-bold mb-2">Marca</label>
+                                    <input required name="marca" type="text" class="form-control form-control-solid" id="marca" />
                                 </div>
                                 <div class="col-6 mb-10">
-                                    <label class="required fs-5 fw-bold mb-2">Administrador</label>
-                                    <select required name="administrador" id="administrador" class="form-select form-select-lg mb-3">
-                                        <option value="0" selected>No</option>
-                                        <option value="1">Si</option>
-                                    </select>
+                                    <label class="required fs-5 fw-bold mb-2">Modelo</label>
+                                    <input required name="modelo" type="text" class="form-control form-control-solid" id="modelo" />
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6 mb-10">
-                                    <label class="required fs-5 fw-bold mb-2">Nombre completo</label>
-                                    <input required name="nombre_completo" type="text" class="form-control form-control-solid" id="nombre_completo" />
-                                </div>
-                                <div class="col-6 mb-10">
-                                    <label class="required fs-5 fw-bold mb-2">Correo</label>
-                                    <input required name="correo" type="email" class="form-control form-control-solid" id="correo" />
+                                <div class="col-12 mb-10">
+                                    <label class="required fs-5 fw-bold mb-2">Referencia</label>
+                                    <input required name="referencia" type="text" class="form-control form-control-solid" id="referencia" />
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6 mb-10">
-                                    <label class="required fs-5 fw-bold mb-2">Dirección</label>
-                                    <input required name="direccion" type="text" class="form-control form-control-solid" id="direccion" />
-                                </div>
-                                <div class="col-6 mb-10">
-                                    <label class="required fs-5 fw-bold mb-2">Telefono</label>
-                                    <input required name="telefono" type="number" class="form-control form-control-solid" id="telefono" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 mb-10">
-                                    <label class="required fs-5 fw-bold mb-2">Usuario</label>
-                                    <input required name="usuario" type="text" class="form-control form-control-solid" id="usuario" />
-                                </div>
-                                <div class="col-6 mb-10">
-                                    <label class="required fs-5 fw-bold mb-2">Contraseña</label>
-                                    <input required name="contraseña" type="text" class="form-control form-control-solid" id="contraseña" />
+                                <div class="col-12 mb-10">
+                                    <label class="required fs-5 fw-bold mb-2">Imagen de Referencia</label>
+                                    <input type="file" class="form-control " id="archivo[]" name="archivo[]" accept=".png">
                                 </div>
                             </div>
 
