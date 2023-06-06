@@ -12,21 +12,10 @@ $formulario = variable_exterior("formulario");
 $resultados = array();
 $resultados_final = array();
 
-
-
-
 $consulta = "";
 
-if($formulario === ''){
 
-    $sqlSelect = "SELECT * FROM `clientes` ";
-    $consulta = $dbm->prepare($sqlSelect);
-    $consulta->execute();
-   
-}
-
-
-if ($formulario == "crear_orden") {
+if ($formulario == "crear_personal") {
     $usuario = variable_exterior("usuario");
     $contraseña = variable_exterior("contraseña");
     $numero_identificacion = variable_exterior("numero_identificacion");
@@ -81,7 +70,7 @@ if ($formulario == "crear_orden") {
     }
 }
 
-if ($formulario == "consultar_orden" && $formulario != "") {
+if ($formulario == "consultar_personal" && $formulario != "") {
 
     $numero_identificacion = variable_exterior("numero_identificacion");
     $usuario = variable_exterior("usuario");
@@ -128,5 +117,7 @@ if ($accion != "" && $id_accion >= 1) {
 <?php
     }
 }
+
+
 
 ?>

@@ -96,7 +96,7 @@
                             ?>
                                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                         <td class="min-w-185px"></td>
-                                        <td class="min-w-185px"><a href="?url_id=usuario&id=<?= $fila['id']  ?>" target="_blank" class="btn btn-primary"><?= $fila['usuario']  ?></a></td>
+                                        <td class=""><a href="?url_id=usuario&id=<?= $fila['id']  ?>" target="_blank" class="btn btn-primary col-12"><?= $fila['usuario']  ?></a></td>
                                         <td class="min-w-185px"><?= $fila['contraseña']  ?></td>
                                         <td class="min-w-125px"><?= $fila['nombre']  ?></td>
                                         <td class="min-w-185px"><?= $fila['correo']  ?></td>

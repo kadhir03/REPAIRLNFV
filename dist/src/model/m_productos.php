@@ -13,6 +13,13 @@ $resultados = array();
 $resultados_final = array();
 
 $consulta = "";
+
+if($formulario == ''){
+    $sql = "SELECT * FROM `lavadoras`";
+    $consulta = $dbm->prepare($sql);
+    $consulta->execute();
+}
+
 if ($formulario == "crear_producto") {
 
     $marca = variable_exterior("marca");

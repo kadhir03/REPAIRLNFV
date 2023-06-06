@@ -11,20 +11,14 @@ $formulario = variable_exterior("formulario");
 
 $resultados = array();
 $resultados_final = array();
-
-
-
-
 $consulta = "";
 
-if($formulario === ''){
 
-    $sqlSelect = "SELECT * FROM `clientes` ";
-    $consulta = $dbm->prepare($sqlSelect);
+if($formulario == ''){
+    $sql = "SELECT * FROM `clientes`";
+    $consulta = $dbm->prepare($sql);
     $consulta->execute();
-   
 }
-
 
 if ($formulario == "crear_personal") {
     $usuario = variable_exterior("usuario");
